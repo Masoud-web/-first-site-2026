@@ -4,23 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اولین سایت من</title>
+    <title>ماشین حساب</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>سلام دنیا 🌍</h1>
+<h1>ماشین حساب من 🧮</h1>
 
-<p id="message">این اولین صفحه وب من است.</p>
-
-<input type="text" id="name" placeholder="نام خود را وارد کنید">
+<input type="number" id="num1" placeholder="عدد اول">
 
 <br><br>
 
-<button onclick="hello()">نمایش پیام</button>
+<input type="number" id="num2" placeholder="عدد دوم">
 
-<button onclick="darkMode()">🌙 حالت شب</button>
+<br><br>
+
+<button onclick="jam()">➕ جمع</button>
+
+<button onclick="tafrigh()">➖ تفریق</button>
+
+<button onclick="zarb()">✖️ ضرب</button>
+
+<button onclick="taghsim()">➗ تقسیم</button>
+
+<h2 id="result">نتیجه:</h2>
 
 <script src="script.js"></script>
 
