@@ -1,52 +1,23 @@
 body{
     background:#f2f2f2;
-    font-family:Tahoma, sans-serif;
+    font-family:Tahoma,sans-serif;
     text-align:center;
     margin-top:40px;
-}
-
-h1{
-    color:#0066cc;
-}
-
-input{
-    width:260px;
-    padding:12px;
-    font-size:20px;
-    margin:8px;
-    border-radius:10px;
-    border:1px solid #999;
-    text-align:center;
-}
-
-button{
-    padding:12px 18px;
-    margin:6px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    background:#007bff;
-    color:white;
-}
-
-button:hover{
-    background:#0056b3;
-}
-
-#result{
-    margin-top:25px;
-    font-size:28px;
-    color:green;
+    transition:0.5s;
 }
 
 .card{
-    width:420px;
+    width:430px;
     margin:auto;
     background:white;
     padding:25px;
     border-radius:20px;
-    box-shadow:0 0 15px rgba(0,0,0,.2);
+    box-shadow:0 0 15px rgba(0,0,0,.25);
+    transition:0.5s;
+}
+
+h1{
+    color:#0066cc;
 }
 
 #clock{
@@ -55,12 +26,100 @@ button:hover{
     margin-bottom:20px;
 }
 
+input{
+
+    width:260px;
+    padding:12px;
+    font-size:20px;
+    border-radius:10px;
+    border:1px solid #999;
+    text-align:center;
+    margin:8px;
+
+}
+
+button{
+
+    padding:10px 16px;
+    margin:6px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    color:white;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+button:nth-of-type(1){
+    background:#28a745;
+}
+
+button:nth-of-type(2){
+    background:#dc3545;
+}
+
+button:nth-of-type(3){
+    background:#ffc107;
+    color:black;
+}
+
+button:nth-of-type(4){
+    background:#17a2b8;
+}
+
+button:nth-of-type(5){
+    background:#6f42c1;
+}
+
+button:nth-of-type(6){
+    background:#fd7e14;
+}
+
+button:nth-of-type(7){
+    background:#20c997;
+}
+
+button:nth-of-type(8){
+    background:#343a40;
+}
+
+button:nth-of-type(9){
+    background:#6c757d;
+}
+
+button:nth-of-type(10){
+    background:#e83e8c;
+}
+
+#result{
+
+    margin-top:25px;
+    font-size:28px;
+    color:green;
+
+}
+
 #history{
+
     text-align:right;
     margin-top:20px;
     font-size:18px;
+    max-height:220px;
+    overflow:auto;
+
 }
 
 #history li{
+
     margin:6px;
+    padding:5px;
+    border-bottom:1px solid #ddd;
+
 }
