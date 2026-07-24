@@ -1,5 +1,6 @@
-let name = "Masoud";
+let name = "مسعود";
+let job = "Web Developer";
 
 function hello() {
-    alert("سلام " + name + "، به سایت من خوش آمدید.");
+    alert("سلام " + name + "\nشغل آینده شما: " + job);
 }
