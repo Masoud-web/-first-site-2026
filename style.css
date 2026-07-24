@@ -6,18 +6,24 @@ body {
     margin-top: 60px;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
 h1 {
-    color: #0066cc;
+    color: blue;
 }
 
 p {
-    font-size: 20px;
+    font-size: 22px;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
 }
