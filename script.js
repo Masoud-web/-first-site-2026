@@ -1,6 +1,11 @@
 function hello() {
-    let name = prompt("نام شما؟");
+    let name = prompt("نام شما چیست؟");
 
     document.getElementById("message").innerHTML =
-        "<h2>سلام " + name + " 👋</h2>";
+        "سلام " + name + " 🌹";
+}
+
+function darkMode() {
+    document.body.style.background = "black";
+    document.body.style.color = "white";
 }
