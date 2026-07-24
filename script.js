@@ -15,27 +15,34 @@ function getNumbers() {
 }
 
 function jam() {
+
     let n = getNumbers();
     if (n == null) return;
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a + n.b);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a + n.b);
 }
 
 function tafrigh() {
+
     let n = getNumbers();
     if (n == null) return;
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a - n.b);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a - n.b);
 }
 
 function zarb() {
+
     let n = getNumbers();
     if (n == null) return;
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a * n.b);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a * n.b);
 }
 
 function taghsim() {
+
     let n = getNumbers();
     if (n == null) return;
 
@@ -44,17 +51,21 @@ function taghsim() {
         return;
     }
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a / n.b);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a / n.b);
 }
 
 function tavan() {
+
     let n = getNumbers();
     if (n == null) return;
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a ** 2);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a ** 2);
 }
 
 function jazr() {
+
     let n = getNumbers();
     if (n == null) return;
 
@@ -63,10 +74,12 @@ function jazr() {
         return;
     }
 
-    document.getElementById("result").innerHTML = "نتیجه = " + Math.sqrt(n.a);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + Math.sqrt(n.a);
 }
 
 function baghimande() {
+
     let n = getNumbers();
     if (n == null) return;
 
@@ -75,12 +88,49 @@ function baghimande() {
         return;
     }
 
-    document.getElementById("result").innerHTML = "نتیجه = " + (n.a % n.b);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a % n.b);
 }
 
 function clearData() {
+
     document.getElementById("num1").value = "";
     document.getElementById("num2").value = "";
+
     document.getElementById("result").innerHTML = "نتیجه:";
+
     document.getElementById("num1").focus();
 }
+
+let dark = false;
+
+function darkMode() {
+
+    if (dark == false) {
+
+        document.body.style.background = "#222";
+        document.body.style.color = "white";
+
+        dark = true;
+
+    } else {
+
+        document.body.style.background = "#f2f2f2";
+        document.body.style.color = "black";
+
+        dark = false;
+    }
+}
+
+function showClock() {
+
+    let now = new Date();
+
+    let time = now.toLocaleTimeString();
+
+    document.getElementById("clock").innerHTML = time;
+}
+
+setInterval(showClock, 1000);
+
+showClock();
