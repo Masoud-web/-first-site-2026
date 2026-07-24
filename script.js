@@ -1,5 +1,6 @@
 function hello() {
-    let name = prompt("لطفاً نام خود را وارد کنید:");
+    let name = prompt("نام شما؟");
+    let city = prompt("شهر شما؟");
 
-    alert("سلام " + name + " 🌹");
+    alert("سلام " + name + "\nخوش آمدی از " + city + " 🌍");
 }
