@@ -1,6 +1,5 @@
-let name = "مسعود";
-let job = "Web Developer";
-
 function hello() {
-    alert("سلام " + name + "\nشغل آینده شما: " + job);
+    let name = prompt("لطفاً نام خود را وارد کنید:");
+
+    alert("سلام " + name + " 🌹");
 }
