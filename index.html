@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ماشین حساب</title>
+    <title>ماشین حساب حرفه‌ای</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -17,57 +17,40 @@
 
 <div class="calculator">
 
-    <h1>🧮 ماشین حساب</h1>
+    <h1>🧮 ماشین حساب حرفه‌ای</h1>
 
     <input type="text" id="display" readonly>
 
     <div class="buttons">
 
-        <button onclick="clearDisplay()">C</button>
+        <!-- ردیف اول -->
+        <button class="function" onclick="allClear()">AC</button>
+        <button class="function" onclick="backspace()">⌫</button>
+        <button class="function" onclick="changeSign()">±</button>
+        <button class="operator" onclick="appendOperator('/')">÷</button>
 
-        <button onclick="backspace()">⌫</button>
+        <!-- ردیف دوم -->
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button class="operator" onclick="appendOperator('*')">×</button>
 
-        <button onclick="appendValue('(')">(</button>
+        <!-- ردیف سوم -->
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button class="operator" onclick="appendOperator('-')">−</button>
 
-        <button onclick="appendValue(')')">)</button>
+        <!-- ردیف چهارم -->
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button class="operator" onclick="appendOperator('+')">+</button>
 
-        <button onclick="appendValue('/')">÷</button>
-
-        <button onclick="appendValue('7')">7</button>
-
-        <button onclick="appendValue('8')">8</button>
-
-        <button onclick="appendValue('9')">9</button>
-
-        <button onclick="appendValue('*')">×</button>
-
-        <button onclick="appendValue('%')">%</button>
-
-        <button onclick="appendValue('4')">4</button>
-
-        <button onclick="appendValue('5')">5</button>
-
-        <button onclick="appendValue('6')">6</button>
-
-        <button onclick="appendValue('-')">−</button>
-
-        <button onclick="appendValue('**2')">x²</button>
-
-        <button onclick="appendValue('1')">1</button>
-
-        <button onclick="appendValue('2')">2</button>
-
-        <button onclick="appendValue('3')">3</button>
-
-        <button onclick="appendValue('+')">+</button>
-
-        <button onclick="appendValue('**0.5')">√</button>
-
-        <button onclick="appendValue('0')">0</button>
-
-        <button onclick="appendValue('.')">.</button>
-
-        <button onclick="calculate()">=</button>
+        <!-- ردیف پنجم -->
+        <button class="zero" onclick="appendNumber('0')">0</button>
+        <button onclick="appendDot()">.</button>
+        <button class="equal" onclick="calculate()">=</button>
 
     </div>
 
