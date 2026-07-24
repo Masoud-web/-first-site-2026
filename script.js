@@ -1,12 +1,16 @@
 let dark = false;
 
 function hello() {
-    let name = prompt("نام شما چیست؟");
 
-    if (name != null && name != "") {
-        document.getElementById("message").innerHTML =
-            "سلام " + name + " 🌹";
+    let name = document.getElementById("name").value;
+
+    if (name == "") {
+        alert("لطفاً نام خود را وارد کنید.");
+        return;
     }
+
+    document.getElementById("message").innerHTML =
+        "سلام " + name + " 🌹";
 }
 
 function darkMode() {
