@@ -1,66 +1,31 @@
-function getNumbers() {
-
-    let num1 = document.getElementById("num1").value;
-    let num2 = document.getElementById("num2").value;
-
-    if (num1 === "" || num2 === "") {
-        alert("لطفاً هر دو عدد را وارد کنید.");
-        return null;
-    }
-
-    return {
-        a: Number(num1),
-        b: Number(num2)
-    };
-}
-
-function jam() {
+function tavan() {
 
     let n = getNumbers();
     if (n == null) return;
 
     document.getElementById("result").innerHTML =
-        "نتیجه = " + (n.a + n.b);
+        "نتیجه = " + (n.a * n.a);
 }
 
-function tafrigh() {
+function jazr() {
 
     let n = getNumbers();
     if (n == null) return;
 
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + (n.a - n.b);
-}
-
-function zarb() {
-
-    let n = getNumbers();
-    if (n == null) return;
-
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + (n.a * n.b);
-}
-
-function taghsim() {
-
-    let n = getNumbers();
-    if (n == null) return;
-
-    if (n.b === 0) {
-        alert("تقسیم بر صفر امکان‌پذیر نیست.");
+    if (n.a < 0) {
+        alert("جذر عدد منفی تعریف نشده است.");
         return;
     }
 
     document.getElementById("result").innerHTML =
-        "نتیجه = " + (n.a / n.b);
+        "نتیجه = " + Math.sqrt(n.a);
 }
 
-function clearData() {
+function baghimande() {
 
-    document.getElementById("num1").value = "";
-    document.getElementById("num2").value = "";
+    let n = getNumbers();
+    if (n == null) return;
 
-    document.getElementById("result").innerHTML = "نتیجه:";
-
-    document.getElementById("num1").focus();
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + (n.a % n.b);
 }
