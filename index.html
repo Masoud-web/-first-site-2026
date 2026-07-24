@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ماشین حساب حرفه‌ای</title>
+<title>ماشین حساب</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -15,59 +15,57 @@
 
 <body>
 
-<div class="card">
+<div class="calculator">
 
-<h1>🧮 ماشین حساب حرفه‌ای</h1>
+<h1>🧮 ماشین حساب</h1>
 
-<h2 id="clock"></h2>
+<input type="text" id="display" readonly>
 
-<input
-type="number"
-id="num1"
-placeholder="عدد اول">
+<div class="buttons">
 
-<br><br>
+<button onclick="clearDisplay()">C</button>
 
-<input
-type="number"
-id="num2"
-placeholder="عدد دوم">
+<button onclick="appendValue('(')">(</button>
 
-<br><br>
+<button onclick="appendValue(')')">)</button>
 
-<button onclick="jam()">➕ جمع</button>
+<button onclick="appendValue('/')">÷</button>
 
-<button onclick="tafrigh()">➖ تفریق</button>
+<button onclick="appendValue('7')">7</button>
 
-<button onclick="zarb()">✖️ ضرب</button>
+<button onclick="appendValue('8')">8</button>
 
-<button onclick="taghsim()">➗ تقسیم</button>
+<button onclick="appendValue('9')">9</button>
 
-<br><br>
+<button onclick="appendValue('*')">×</button>
 
-<button onclick="tavan()">x² توان</button>
+<button onclick="appendValue('4')">4</button>
 
-<button onclick="jazr()">√ جذر</button>
+<button onclick="appendValue('5')">5</button>
 
-<button onclick="baghimande()">٪ باقیمانده</button>
+<button onclick="appendValue('6')">6</button>
 
-<br><br>
+<button onclick="appendValue('-')">−</button>
 
-<button onclick="darkMode()">🌙 حالت شب</button>
+<button onclick="appendValue('1')">1</button>
 
-<button onclick="clearData()">🗑 پاک کردن</button>
+<button onclick="appendValue('2')">2</button>
 
-<button onclick="clearHistory()">📜 پاک کردن تاریخچه</button>
+<button onclick="appendValue('3')">3</button>
 
-<h2 id="result">نتیجه:</h2>
+<button onclick="appendValue('+')">+</button>
 
-<h3>📜 تاریخچه محاسبات</h3>
+<button onclick="appendValue('0')">0</button>
 
-<ul id="history"></ul>
+<button onclick="appendValue('.')">.</button>
 
-<script src="script.js"></script>
+<button onclick="calculate()">=</button>
 
 </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 
