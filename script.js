@@ -1,44 +1,36 @@
-function jam(){
-
+function jam() {
     let a = Number(document.getElementById("num1").value);
     let b = Number(document.getElementById("num2").value);
 
     document.getElementById("result").innerHTML =
-    "نتیجه = " + (a+b);
-
+        "نتیجه = " + (a + b);
 }
 
-function tafrigh(){
-
+function tafrigh() {
     let a = Number(document.getElementById("num1").value);
     let b = Number(document.getElementById("num2").value);
 
     document.getElementById("result").innerHTML =
-    "نتیجه = " + (a-b);
-
+        "نتیجه = " + (a - b);
 }
 
-function zarb(){
-
+function zarb() {
     let a = Number(document.getElementById("num1").value);
     let b = Number(document.getElementById("num2").value);
 
     document.getElementById("result").innerHTML =
-    "نتیجه = " + (a*b);
-
+        "نتیجه = " + (a * b);
 }
 
-function taghsim(){
-
+function taghsim() {
     let a = Number(document.getElementById("num1").value);
     let b = Number(document.getElementById("num2").value);
 
-    if(b==0){
+    if (b === 0) {
         alert("تقسیم بر صفر امکان‌پذیر نیست.");
         return;
     }
 
     document.getElementById("result").innerHTML =
-    "نتیجه = " + (a/b);
-
+        "نتیجه = " + (a / b);
 }
