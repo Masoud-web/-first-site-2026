@@ -1,3 +1,5 @@
+let name = "Masoud";
+
 function hello() {
-    alert("سلام! به اولین سایت من خوش آمدید.");
+    alert("سلام " + name + "، به سایت من خوش آمدید.");
 }
