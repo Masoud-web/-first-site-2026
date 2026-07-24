@@ -1,266 +1,79 @@
-let dark = false;
-let historyList = [];
 
-// بارگذاری تاریخچه ذخیره شده
-window.onload = function () {
 
-    showClock();
+// گرفتن عناصر صفحه
+const input = document.getElementById("taskInput");
+const addButton = document.getElementById("addBtn");
+const taskList = document.getElementById("taskList");
 
-    let saved = localStorage.getItem("history");
 
-    if (saved != null) {
+// اضافه کردن وظیفه جدید
+addButton.addEventListener("click", addTask);
 
-        historyList = JSON.parse(saved);
 
-        showHistory();
-
+// اضافه کردن با دکمه Enter
+input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        addTask();
     }
+});
 
-};
 
-// دریافت اعداد
-function getNumbers() {
+// تابع اضافه کردن آیتم
+function addTask() {
 
-    let num1 = document.getElementById("num1").value;
-    let num2 = document.getElementById("num2").value;
+    let text = input.value.trim();
 
-    if (num1 === "" || num2 === "") {
-
-        alert("لطفاً هر دو عدد را وارد کنید.");
-
-        return null;
-    }
-
-    return {
-
-        a: Number(num1),
-        b: Number(num2)
-
-    };
-
-}
-
-// نمایش تاریخچه
-function showHistory() {
-
-    let list = document.getElementById("history");
-
-    list.innerHTML = "";
-
-    for (let i = 0; i < historyList.length; i++) {
-
-        list.innerHTML += "<li>" + historyList[i] + "</li>";
-
-    }
-
-}
-
-// افزودن به تاریخچه
-function addHistory(text) {
-
-    historyList.push(text);
-
-    localStorage.setItem("history", JSON.stringify(historyList));
-
-    showHistory();
-
-}
-
-// جمع
-function jam() {
-
-    let n = getNumbers();
-
-    if (n == null) return;
-
-    let result = n.a + n.b;
-
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
-
-    addHistory(n.a + " + " + n.b + " = " + result);
-
-}
-
-// تفریق
-function tafrigh() {
-
-    let n = getNumbers();
-
-    if (n == null) return;
-
-    let result = n.a - n.b;
-
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
-
-    addHistory(n.a + " - " + n.b + " = " + result);
-
-}
-
-// ضرب
-function zarb() {
-
-    let n = getNumbers();
-
-    if (n == null) return;
-
-    let result = n.a * n.b;
-
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
-
-    addHistory(n.a + " × " + n.b + " = " + result);
-
-}
-
-// تقسیم
-function taghsim() {
-
-    let n = getNumbers();
-
-    if (n == null) return;
-
-    if (n.b == 0) {
-
-        alert("تقسیم بر صفر امکان‌پذیر نیست.");
-
+    if (text === "") {
+        alert("لطفاً یک متن وارد کنید");
         return;
-
     }
 
-    let result = n.a / n.b;
 
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
+    // ساخت آیتم جدید
+    const li = document.createElement("li");
 
-    addHistory(n.a + " ÷ " + n.b + " = " + result);
 
-}
+    li.innerHTML = `
+        <span class="task-text">${text}</span>
 
-// توان
-function tavan() {
+        <div>
+            <button class="done-btn">
+                انجام شد
+            </button>
 
-    let n = getNumbers();
+            <button class="delete">
+                حذف
+            </button>
+        </div>
+    `;
 
-    if (n == null) return;
 
-    let result = n.a ** 2;
+    // اضافه کردن به لیست
+    taskList.appendChild(li);
 
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
 
-    addHistory(n.a + "² = " + result);
+    // پاک کردن ورودی
+    input.value = "";
 
-}
 
-// جذر
-function jazr() {
+    // فعال کردن دکمه انجام شد
+    const doneButton = li.querySelector(".done-btn");
 
-    let n = getNumbers();
+    doneButton.addEventListener("click", function() {
 
-    if (n == null) return;
+        li.classList.toggle("completed");
 
-    if (n.a < 0) {
+    });
 
-        alert("جذر عدد منفی تعریف نشده است.");
 
-        return;
 
-    }
+    // فعال کردن دکمه حذف
+    const deleteButton = li.querySelector(".delete");
 
-    let result = Math.sqrt(n.a);
+    deleteButton.addEventListener("click", function() {
 
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
+        li.remove();
 
-    addHistory("√" + n.a + " = " + result);
-
-}
-
-// باقیمانده
-function baghimande() {
-
-    let n = getNumbers();
-
-    if (n == null) return;
-
-    if (n.b == 0) {
-
-        alert("تقسیم بر صفر امکان‌پذیر نیست.");
-
-        return;
-
-    }
-
-    let result = n.a % n.b;
-
-    document.getElementById("result").innerHTML =
-        "نتیجه = " + result;
-
-    addHistory(n.a + " % " + n.b + " = " + result);
+    });
 
 }
-
-// پاک کردن ورودی‌ها
-function clearData() {
-
-    document.getElementById("num1").value = "";
-
-    document.getElementById("num2").value = "";
-
-    document.getElementById("result").innerHTML = "نتیجه:";
-
-    document.getElementById("num1").focus();
-
-}
-
-// پاک کردن تاریخچه
-function clearHistory() {
-
-    historyList = [];
-
-    localStorage.removeItem("history");
-
-    showHistory();
-
-}
-
-// حالت شب
-function darkMode() {
-
-    if (!dark) {
-
-        document.body.style.background = "#222";
-
-        document.body.style.color = "white";
-
-        document.querySelector(".card").style.background = "#333";
-
-        dark = true;
-
-    } else {
-
-        document.body.style.background = "#f2f2f2";
-
-        document.body.style.color = "black";
-
-        document.querySelector(".card").style.background = "white";
-
-        dark = false;
-
-    }
-
-}
-
-// ساعت
-function showClock() {
-
-    let now = new Date();
-
-    document.getElementById("clock").innerHTML =
-        now.toLocaleTimeString();
-
-}
-
-setInterval(showClock, 1000);
