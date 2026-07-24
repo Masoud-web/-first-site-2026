@@ -1,6 +1,6 @@
 function hello() {
-    let name = prompt("نام شما چیست؟");
+    let name = prompt("نام شما؟");
 
     document.getElementById("message").innerHTML =
-        "سلام " + name + "، خوش آمدید 🌹";
+        "<h2>سلام " + name + " 👋</h2>";
 }
