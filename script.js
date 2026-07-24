@@ -1,79 +1,195 @@
-function appendValue(value){
+let display = document.getElementById("display");
 
-    document.getElementById("display").value += value;
+let current = "";
+let firstNumber = null;
+let operator = null;
+let waitingSecondNumber = false;
+
+// نمایش اعداد
+function appendNumber(number){
+
+    if(waitingSecondNumber){
+
+        current = number;
+
+        waitingSecondNumber = false;
+
+    }else{
+
+        current += number;
+
+    }
+
+    display.value = current;
 
 }
 
-function clearDisplay(){
+// نقطه اعشار
+function appendDot(){
 
-    document.getElementById("display").value = "";
+    if(current.indexOf(".") === -1){
 
-}
+        if(current === ""){
 
-function calculate(){
+            current = "0.";
 
-    let display = document.getElementById("display");
+        }else{
 
-    try{
+            current += ".";
 
-        display.value = eval(display.value);
+        }
 
-    }catch{
-
-        alert("عبارت وارد شده صحیح نیست.");
-
-        display.value = "";
+        display.value = current;
 
     }
 
 }
 
-// حذف آخرین کاراکتر
-function backspace(){
+// انتخاب عملگر
+function appendOperator(op){
 
-    let display = document.getElementById("display");
+    if(current === "") return;
 
-    display.value = display.value.slice(0,-1);
+    if(firstNumber === null){
 
-}
+        firstNumber = Number(current);
 
-// پشتیبانی از صفحه کلید
-document.addEventListener("keydown",function(event){
-
-    let key = event.key;
-
-    if(
-        (key >= "0" && key <= "9") ||
-        key=="+" ||
-        key=="-" ||
-        key=="*" ||
-        key=="/" ||
-        key=="." ||
-        key=="(" ||
-        key==")"
-    ){
-
-        appendValue(key);
-
-    }
-
-    else if(key=="Enter"){
-
-        event.preventDefault();
+    }else if(!waitingSecondNumber){
 
         calculate();
 
     }
 
-    else if(key=="Backspace"){
+    operator = op;
+
+    waitingSecondNumber = true;
+
+}
+
+// محاسبه
+function calculate(){
+
+    if(operator === null || waitingSecondNumber) return;
+
+    let secondNumber = Number(current);
+
+    let result = 0;
+
+    switch(operator){
+
+        case "+":
+            result = firstNumber + secondNumber;
+            break;
+
+        case "-":
+            result = firstNumber - secondNumber;
+            break;
+
+        case "*":
+            result = firstNumber * secondNumber;
+            break;
+
+        case "/":
+
+            if(secondNumber === 0){
+
+                alert("تقسیم بر صفر امکان‌پذیر نیست.");
+
+                allClear();
+
+                return;
+
+            }
+
+            result = firstNumber / secondNumber;
+
+            break;
+
+    }
+
+    display.value = result;
+
+    current = String(result);
+
+    firstNumber = result;
+
+    operator = null;
+
+}
+
+// پاک کردن همه
+function allClear(){
+
+    current = "";
+
+    firstNumber = null;
+
+    operator = null;
+
+    waitingSecondNumber = false;
+
+    display.value = "";
+
+}
+
+// حذف آخرین رقم
+function backspace(){
+
+    current = current.slice(0,-1);
+
+    display.value = current;
+
+}
+
+// تغییر علامت
+function changeSign(){
+
+    if(current === "") return;
+
+    current = String(Number(current) * -1);
+
+    display.value = current;
+
+}
+
+// صفحه کلید
+document.addEventListener("keydown",function(e){
+
+    if(e.key >= "0" && e.key <= "9"){
+
+        appendNumber(e.key);
+
+    }
+
+    else if(e.key === "."){
+
+        appendDot();
+
+    }
+
+    else if(e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/"){
+
+        appendOperator(e.key);
+
+    }
+
+    else if(e.key === "Enter"){
+
+        e.preventDefault();
+
+        calculate();
+
+    }
+
+    else if(e.key === "Backspace"){
 
         backspace();
 
     }
 
-    else if(key=="Delete"){
+    else if(e.key === "Delete"){
 
-        clearDisplay();
+        allClear();
 
     }
 
