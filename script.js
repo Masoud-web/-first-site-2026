@@ -1,6 +1,6 @@
 function hello() {
-    let name = prompt("نام شما؟");
-    let city = prompt("شهر شما؟");
+    let name = prompt("نام شما چیست؟");
 
-    alert("سلام " + name + "\nخوش آمدی از " + city + " 🌍");
+    document.getElementById("message").innerHTML =
+        "سلام " + name + "، خوش آمدید 🌹";
 }
