@@ -1,84 +1,127 @@
 let dark = false;
-
 let historyList = [];
 
+// بارگذاری تاریخچه ذخیره شده
+window.onload = function () {
+
+    showClock();
+
+    let saved = localStorage.getItem("history");
+
+    if (saved != null) {
+
+        historyList = JSON.parse(saved);
+
+        showHistory();
+
+    }
+
+};
+
+// دریافت اعداد
 function getNumbers() {
 
     let num1 = document.getElementById("num1").value;
     let num2 = document.getElementById("num2").value;
 
     if (num1 === "" || num2 === "") {
+
         alert("لطفاً هر دو عدد را وارد کنید.");
+
         return null;
     }
 
     return {
+
         a: Number(num1),
         b: Number(num2)
+
     };
+
 }
 
-function addHistory(text){
+// نمایش تاریخچه
+function showHistory() {
 
-    historyList.push(text);
+    let list = document.getElementById("history");
 
-    let list=document.getElementById("history");
+    list.innerHTML = "";
 
-    list.innerHTML="";
+    for (let i = 0; i < historyList.length; i++) {
 
-    for(let i=0;i<historyList.length;i++){
-
-        list.innerHTML += "<li>"+historyList[i]+"</li>";
+        list.innerHTML += "<li>" + historyList[i] + "</li>";
 
     }
 
 }
 
-function jam(){
+// افزودن به تاریخچه
+function addHistory(text) {
 
-    let n=getNumbers();
-    if(n==null) return;
+    historyList.push(text);
 
-    let result=n.a+n.b;
+    localStorage.setItem("history", JSON.stringify(historyList));
 
-    document.getElementById("result").innerHTML="نتیجه = "+result;
-
-    addHistory(n.a+" + "+n.b+" = "+result);
+    showHistory();
 
 }
 
-function tafrigh(){
+// جمع
+function jam() {
 
-    let n=getNumbers();
-    if(n==null) return;
+    let n = getNumbers();
 
-    let result=n.a-n.b;
+    if (n == null) return;
 
-    document.getElementById("result").innerHTML="نتیجه = "+result;
+    let result = n.a + n.b;
 
-    addHistory(n.a+" - "+n.b+" = "+result);
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
 
-}
-
-function zarb(){
-
-    let n=getNumbers();
-    if(n==null) return;
-
-    let result=n.a*n.b;
-
-    document.getElementById("result").innerHTML="نتیجه = "+result;
-
-    addHistory(n.a+" × "+n.b+" = "+result);
+    addHistory(n.a + " + " + n.b + " = " + result);
 
 }
 
-function taghsim(){
+// تفریق
+function tafrigh() {
 
-    let n=getNumbers();
-    if(n==null) return;
+    let n = getNumbers();
 
-    if(n.b===0){
+    if (n == null) return;
+
+    let result = n.a - n.b;
+
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
+
+    addHistory(n.a + " - " + n.b + " = " + result);
+
+}
+
+// ضرب
+function zarb() {
+
+    let n = getNumbers();
+
+    if (n == null) return;
+
+    let result = n.a * n.b;
+
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
+
+    addHistory(n.a + " × " + n.b + " = " + result);
+
+}
+
+// تقسیم
+function taghsim() {
+
+    let n = getNumbers();
+
+    if (n == null) return;
+
+    if (n.b == 0) {
 
         alert("تقسیم بر صفر امکان‌پذیر نیست.");
 
@@ -86,33 +129,39 @@ function taghsim(){
 
     }
 
-    let result=n.a/n.b;
+    let result = n.a / n.b;
 
-    document.getElementById("result").innerHTML="نتیجه = "+result;
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
 
-    addHistory(n.a+" ÷ "+n.b+" = "+result);
-
-}
-
-function tavan(){
-
-    let n=getNumbers();
-    if(n==null) return;
-
-    let result=n.a**2;
-
-    document.getElementById("result").innerHTML="نتیجه = "+result;
-
-    addHistory(n.a+"² = "+result);
+    addHistory(n.a + " ÷ " + n.b + " = " + result);
 
 }
 
-function jazr(){
+// توان
+function tavan() {
 
-    let n=getNumbers();
-    if(n==null) return;
+    let n = getNumbers();
 
-    if(n.a<0){
+    if (n == null) return;
+
+    let result = n.a ** 2;
+
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
+
+    addHistory(n.a + "² = " + result);
+
+}
+
+// جذر
+function jazr() {
+
+    let n = getNumbers();
+
+    if (n == null) return;
+
+    if (n.a < 0) {
 
         alert("جذر عدد منفی تعریف نشده است.");
 
@@ -120,20 +169,23 @@ function jazr(){
 
     }
 
-    let result=Math.sqrt(n.a);
+    let result = Math.sqrt(n.a);
 
-    document.getElementById("result").innerHTML="نتیجه = "+result;
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
 
-    addHistory("√"+n.a+" = "+result);
+    addHistory("√" + n.a + " = " + result);
 
 }
 
-function baghimande(){
+// باقیمانده
+function baghimande() {
 
-    let n=getNumbers();
-    if(n==null) return;
+    let n = getNumbers();
 
-    if(n.b===0){
+    if (n == null) return;
+
+    if (n.b == 0) {
 
         alert("تقسیم بر صفر امکان‌پذیر نیست.");
 
@@ -141,54 +193,74 @@ function baghimande(){
 
     }
 
-    let result=n.a%n.b;
+    let result = n.a % n.b;
 
-    document.getElementById("result").innerHTML="نتیجه = "+result;
+    document.getElementById("result").innerHTML =
+        "نتیجه = " + result;
 
-    addHistory(n.a+" % "+n.b+" = "+result);
+    addHistory(n.a + " % " + n.b + " = " + result);
 
 }
 
-function clearData(){
+// پاک کردن ورودی‌ها
+function clearData() {
 
-    document.getElementById("num1").value="";
-    document.getElementById("num2").value="";
+    document.getElementById("num1").value = "";
 
-    document.getElementById("result").innerHTML="نتیجه:";
+    document.getElementById("num2").value = "";
+
+    document.getElementById("result").innerHTML = "نتیجه:";
 
     document.getElementById("num1").focus();
 
 }
 
-function darkMode(){
+// پاک کردن تاریخچه
+function clearHistory() {
 
-    if(!dark){
+    historyList = [];
 
-        document.body.style.background="#222";
-        document.body.style.color="white";
+    localStorage.removeItem("history");
 
-        dark=true;
+    showHistory();
 
-    }else{
+}
 
-        document.body.style.background="#f2f2f2";
-        document.body.style.color="black";
+// حالت شب
+function darkMode() {
 
-        dark=false;
+    if (!dark) {
+
+        document.body.style.background = "#222";
+
+        document.body.style.color = "white";
+
+        document.querySelector(".card").style.background = "#333";
+
+        dark = true;
+
+    } else {
+
+        document.body.style.background = "#f2f2f2";
+
+        document.body.style.color = "black";
+
+        document.querySelector(".card").style.background = "white";
+
+        dark = false;
 
     }
 
 }
 
-function showClock(){
+// ساعت
+function showClock() {
 
-    let now=new Date();
+    let now = new Date();
 
-    document.getElementById("clock").innerHTML=
+    document.getElementById("clock").innerHTML =
         now.toLocaleTimeString();
 
 }
 
-setInterval(showClock,1000);
-
-showClock();
+setInterval(showClock, 1000);
