@@ -1,28 +1,44 @@
-let dark = false;
+function jam(){
 
-function hello() {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
 
-    let name = document.getElementById("name").value;
+    document.getElementById("result").innerHTML =
+    "نتیجه = " + (a+b);
 
-    if (name == "") {
-        alert("لطفاً نام خود را وارد کنید.");
+}
+
+function tafrigh(){
+
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    document.getElementById("result").innerHTML =
+    "نتیجه = " + (a-b);
+
+}
+
+function zarb(){
+
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    document.getElementById("result").innerHTML =
+    "نتیجه = " + (a*b);
+
+}
+
+function taghsim(){
+
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    if(b==0){
+        alert("تقسیم بر صفر امکان‌پذیر نیست.");
         return;
     }
 
-    document.getElementById("message").innerHTML =
-        "سلام " + name + " 🌹";
-}
-
-function darkMode() {
-
-    if (dark == false) {
-        document.body.style.backgroundColor = "black";
-        document.body.style.color = "white";
-        dark = true;
-    } else {
-        document.body.style.backgroundColor = "white";
-        document.body.style.color = "black";
-        dark = false;
-    }
+    document.getElementById("result").innerHTML =
+    "نتیجه = " + (a/b);
 
 }
