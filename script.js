@@ -5,13 +5,19 @@ let firstNumber = null;
 let operator = null;
 let waitingSecondNumber = false;
 
-// نمایش اعداد
+// حافظه ماشین حساب
+let memory = Number(localStorage.getItem("memory")) || 0;
+
+// تاریخچه
+let history = JSON.parse(localStorage.getItem("history")) || [];
+
+showHistory();
+
 function appendNumber(number){
 
     if(waitingSecondNumber){
 
         current = number;
-
         waitingSecondNumber = false;
 
     }else{
@@ -24,7 +30,6 @@ function appendNumber(number){
 
 }
 
-// نقطه اعشار
 function appendDot(){
 
     if(current.indexOf(".") === -1){
@@ -45,7 +50,6 @@ function appendDot(){
 
 }
 
-// انتخاب عملگر
 function appendOperator(op){
 
     if(current === "") return;
@@ -61,12 +65,10 @@ function appendOperator(op){
     }
 
     operator = op;
-
     waitingSecondNumber = true;
 
 }
 
-// محاسبه
 function calculate(){
 
     if(operator === null || waitingSecondNumber) return;
@@ -93,7 +95,7 @@ function calculate(){
 
             if(secondNumber === 0){
 
-                alert("تقسیم بر صفر امکان‌پذیر نیست.");
+                alert("تقسیم بر صفر امکان پذیر نیست.");
 
                 allClear();
 
@@ -109,6 +111,8 @@ function calculate(){
 
     display.value = result;
 
+    addHistory(firstNumber + " " + operator + " " + secondNumber + " = " + result);
+
     current = String(result);
 
     firstNumber = result;
@@ -117,22 +121,17 @@ function calculate(){
 
 }
 
-// پاک کردن همه
 function allClear(){
 
     current = "";
-
     firstNumber = null;
-
     operator = null;
-
     waitingSecondNumber = false;
 
     display.value = "";
 
 }
 
-// حذف آخرین رقم
 function backspace(){
 
     current = current.slice(0,-1);
@@ -141,7 +140,6 @@ function backspace(){
 
 }
 
-// تغییر علامت
 function changeSign(){
 
     if(current === "") return;
@@ -152,7 +150,76 @@ function changeSign(){
 
 }
 
-// صفحه کلید
+/* ---------- حافظه ---------- */
+
+function memoryClear(){
+
+    memory = 0;
+
+    localStorage.setItem("memory",memory);
+
+}
+
+function memoryRecall(){
+
+    current = String(memory);
+
+    display.value = current;
+
+}
+
+function memoryAdd(){
+
+    memory += Number(current || 0);
+
+    localStorage.setItem("memory",memory);
+
+}
+
+function memorySubtract(){
+
+    memory -= Number(current || 0);
+
+    localStorage.setItem("memory",memory);
+
+}
+
+/* ---------- تاریخچه ---------- */
+
+function addHistory(text){
+
+    history.unshift(text);
+
+    if(history.length > 10){
+
+        history.pop();
+
+    }
+
+    localStorage.setItem("history",JSON.stringify(history));
+
+    showHistory();
+
+}
+
+function showHistory(){
+
+    let list = document.getElementById("historyList");
+
+    if(!list) return;
+
+    list.innerHTML = "";
+
+    history.forEach(function(item){
+
+        list.innerHTML += "<li>"+item+"</li>";
+
+    });
+
+}
+
+/* ---------- صفحه کلید ---------- */
+
 document.addEventListener("keydown",function(e){
 
     if(e.key >= "0" && e.key <= "9"){
@@ -167,7 +234,12 @@ document.addEventListener("keydown",function(e){
 
     }
 
-    else if(e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/"){
+    else if(
+        e.key === "+" ||
+        e.key === "-" ||
+        e.key === "*" ||
+        e.key === "/"
+    ){
 
         appendOperator(e.key);
 
