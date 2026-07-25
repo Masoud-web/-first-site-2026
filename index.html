@@ -21,36 +21,71 @@
 
     <input type="text" id="display" readonly>
 
+    <!-- حافظه ماشین حساب -->
+
+    <div class="memory">
+
+        <button class="memory-btn" onclick="memoryClear()">MC</button>
+
+        <button class="memory-btn" onclick="memoryRecall()">MR</button>
+
+        <button class="memory-btn" onclick="memoryAdd()">M+</button>
+
+        <button class="memory-btn" onclick="memorySubtract()">M-</button>
+
+    </div>
+
+    <!-- دکمه‌ها -->
+
     <div class="buttons">
 
-        <!-- ردیف اول -->
         <button class="function" onclick="allClear()">AC</button>
+
         <button class="function" onclick="backspace()">⌫</button>
+
         <button class="function" onclick="changeSign()">±</button>
+
         <button class="operator" onclick="appendOperator('/')">÷</button>
 
-        <!-- ردیف دوم -->
         <button onclick="appendNumber('7')">7</button>
+
         <button onclick="appendNumber('8')">8</button>
+
         <button onclick="appendNumber('9')">9</button>
+
         <button class="operator" onclick="appendOperator('*')">×</button>
 
-        <!-- ردیف سوم -->
         <button onclick="appendNumber('4')">4</button>
+
         <button onclick="appendNumber('5')">5</button>
+
         <button onclick="appendNumber('6')">6</button>
+
         <button class="operator" onclick="appendOperator('-')">−</button>
 
-        <!-- ردیف چهارم -->
         <button onclick="appendNumber('1')">1</button>
+
         <button onclick="appendNumber('2')">2</button>
+
         <button onclick="appendNumber('3')">3</button>
+
         <button class="operator" onclick="appendOperator('+')">+</button>
 
-        <!-- ردیف پنجم -->
         <button class="zero" onclick="appendNumber('0')">0</button>
+
         <button onclick="appendDot()">.</button>
+
         <button class="equal" onclick="calculate()">=</button>
+
+    </div>
+
+    <!-- تاریخچه -->
+
+    <div class="history">
+
+        <h2>📜 تاریخچه محاسبات</h2>
+
+        <ul id="historyList"></ul>
 
     </div>
 
