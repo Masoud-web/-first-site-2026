@@ -1,17 +1,22 @@
 let display = document.getElementById("display");
+let expression = document.getElementById("expression");
 
 let current = "";
 let firstNumber = null;
 let operator = null;
 let waitingSecondNumber = false;
 
-// حافظه ماشین حساب
+// حافظه
 let memory = Number(localStorage.getItem("memory")) || 0;
 
 // تاریخچه
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
 showHistory();
+
+// ======================
+// نمایش اعداد
+// ======================
 
 function appendNumber(number){
 
@@ -26,9 +31,13 @@ function appendNumber(number){
 
     }
 
-    display.value = current;
+    updateDisplay();
 
 }
+
+// ======================
+// اعشار
+// ======================
 
 function appendDot(){
 
@@ -44,101 +53,150 @@ function appendDot(){
 
         }
 
-        display.value = current;
+        updateDisplay();
 
     }
 
 }
+
+// ======================
+// نمایش
+// ======================
+
+function updateDisplay(){
+
+    display.value = current;
+
+    // کوچک شدن خودکار فونت
+    if(current.length > 12){
+
+        display.style.fontSize = "24px";
+
+    }
+    else if(current.length > 8){
+
+        display.style.fontSize = "30px";
+
+    }
+    else{
+
+        display.style.fontSize = "40px";
+
+    }
+
+}
+
+// ======================
+// عملگر
+// ======================
 
 function appendOperator(op){
 
     if(current === "") return;
 
-    if(firstNumber === null){
-
-        firstNumber = Number(current);
-
-    }else if(!waitingSecondNumber){
-
-        calculate();
-
-    }
+    firstNumber = Number(current);
 
     operator = op;
+
+    expression.innerHTML = current + " " + op;
+
     waitingSecondNumber = true;
 
 }
 
+// ======================
+// محاسبه
+// ======================
+
 function calculate(){
 
-    if(operator === null || waitingSecondNumber) return;
+    if(operator == null) return;
 
-    let secondNumber = Number(current);
+    let second = Number(current);
 
     let result = 0;
 
     switch(operator){
 
         case "+":
-            result = firstNumber + secondNumber;
+            result = firstNumber + second;
             break;
 
         case "-":
-            result = firstNumber - secondNumber;
+            result = firstNumber - second;
             break;
 
         case "*":
-            result = firstNumber * secondNumber;
+            result = firstNumber * second;
             break;
 
         case "/":
 
-            if(secondNumber === 0){
+            if(second == 0){
 
                 alert("تقسیم بر صفر امکان پذیر نیست.");
-
-                allClear();
 
                 return;
 
             }
 
-            result = firstNumber / secondNumber;
-
+            result = firstNumber / second;
             break;
 
     }
 
-    display.value = result;
-
-    addHistory(firstNumber + " " + operator + " " + secondNumber + " = " + result);
+    expression.innerHTML =
+        firstNumber + " " +
+        operator + " " +
+        second + " =";
 
     current = String(result);
 
-    firstNumber = result;
+    updateDisplay();
+
+    addHistory(expression.innerHTML + " " + result);
 
     operator = null;
 
+    firstNumber = result;
+
 }
+
+// ======================
+// پاک کردن
+// ======================
 
 function allClear(){
 
     current = "";
+
     firstNumber = null;
+
     operator = null;
+
     waitingSecondNumber = false;
 
-    display.value = "";
+    expression.innerHTML = "";
+
+    updateDisplay();
 
 }
+
+// ======================
+// حذف آخرین رقم
+// ======================
 
 function backspace(){
 
     current = current.slice(0,-1);
 
-    display.value = current;
+    updateDisplay();
 
 }
+
+// ======================
+// تغییر علامت
+// ======================
 
 function changeSign(){
 
@@ -146,11 +204,85 @@ function changeSign(){
 
     current = String(Number(current) * -1);
 
-    display.value = current;
+    updateDisplay();
 
 }
 
-/* ---------- حافظه ---------- */
+// ======================
+// درصد
+// ======================
+
+function percent(){
+
+    if(current === "") return;
+
+    current = String(Number(current) / 100);
+
+    updateDisplay();
+
+}
+
+// ======================
+// جذر
+// ======================
+
+function squareRoot(){
+
+    if(current === "") return;
+
+    if(Number(current) < 0){
+
+        alert("جذر عدد منفی تعریف نشده است.");
+
+        return;
+
+    }
+
+    current = String(Math.sqrt(Number(current)));
+
+    updateDisplay();
+
+}
+
+// ======================
+// توان دوم
+// ======================
+
+function square(){
+
+    if(current === "") return;
+
+    current = String(Number(current) ** 2);
+
+    updateDisplay();
+
+}
+
+// ======================
+// معکوس
+// ======================
+
+function inverse(){
+
+    if(current === "") return;
+
+    if(Number(current) == 0){
+
+        alert("تقسیم بر صفر امکان پذیر نیست.");
+
+        return;
+
+    }
+
+    current = String(1 / Number(current));
+
+    updateDisplay();
+
+}
+
+// ======================
+// حافظه
+// ======================
 
 function memoryClear(){
 
@@ -164,7 +296,7 @@ function memoryRecall(){
 
     current = String(memory);
 
-    display.value = current;
+    updateDisplay();
 
 }
 
@@ -184,7 +316,9 @@ function memorySubtract(){
 
 }
 
-/* ---------- تاریخچه ---------- */
+// ======================
+// تاریخچه
+// ======================
 
 function addHistory(text){
 
@@ -218,7 +352,9 @@ function showHistory(){
 
 }
 
-/* ---------- صفحه کلید ---------- */
+// ======================
+// صفحه کلید
+// ======================
 
 document.addEventListener("keydown",function(e){
 
@@ -228,24 +364,24 @@ document.addEventListener("keydown",function(e){
 
     }
 
-    else if(e.key === "."){
+    else if(e.key == "."){
 
         appendDot();
 
     }
 
     else if(
-        e.key === "+" ||
-        e.key === "-" ||
-        e.key === "*" ||
-        e.key === "/"
+        e.key == "+" ||
+        e.key == "-" ||
+        e.key == "*" ||
+        e.key == "/"
     ){
 
         appendOperator(e.key);
 
     }
 
-    else if(e.key === "Enter"){
+    else if(e.key == "Enter"){
 
         e.preventDefault();
 
@@ -253,13 +389,13 @@ document.addEventListener("keydown",function(e){
 
     }
 
-    else if(e.key === "Backspace"){
+    else if(e.key == "Backspace"){
 
         backspace();
 
     }
 
-    else if(e.key === "Delete"){
+    else if(e.key == "Delete"){
 
         allClear();
 
