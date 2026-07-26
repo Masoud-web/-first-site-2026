@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>ماشین حساب حرفه‌ای</title>
 
@@ -19,33 +20,66 @@
 
     <h1>🧮 ماشین حساب حرفه‌ای</h1>
 
-    <input type="text" id="display" readonly>
+    <!-- نمایش عبارت -->
+    <div id="expression"></div>
 
-    <!-- حافظه ماشین حساب -->
+    <!-- نمایش نتیجه -->
+    <input
+        type="text"
+        id="display"
+        readonly>
+
+    <!-- حافظه -->
 
     <div class="memory">
 
-        <button class="memory-btn" onclick="memoryClear()">MC</button>
+        <button class="memory-btn"
+                onclick="memoryClear()">MC</button>
 
-        <button class="memory-btn" onclick="memoryRecall()">MR</button>
+        <button class="memory-btn"
+                onclick="memoryRecall()">MR</button>
 
-        <button class="memory-btn" onclick="memoryAdd()">M+</button>
+        <button class="memory-btn"
+                onclick="memoryAdd()">M+</button>
 
-        <button class="memory-btn" onclick="memorySubtract()">M-</button>
+        <button class="memory-btn"
+                onclick="memorySubtract()">M-</button>
 
     </div>
 
-    <!-- دکمه‌ها -->
+    <!-- دکمه ها -->
 
     <div class="buttons">
 
-        <button class="function" onclick="allClear()">AC</button>
+        <!-- ردیف اول -->
 
-        <button class="function" onclick="backspace()">⌫</button>
+        <button class="function"
+                onclick="allClear()">AC</button>
 
-        <button class="function" onclick="changeSign()">±</button>
+        <button class="function"
+                onclick="backspace()">⌫</button>
 
-        <button class="operator" onclick="appendOperator('/')">÷</button>
+        <button class="function"
+                onclick="changeSign()">±</button>
+
+        <button class="operator"
+                onclick="percent()">%</button>
+
+        <!-- ردیف دوم -->
+
+        <button class="special"
+                onclick="squareRoot()">√</button>
+
+        <button class="special"
+                onclick="square()">x²</button>
+
+        <button class="special"
+                onclick="inverse()">1/x</button>
+
+        <button class="operator"
+                onclick="appendOperator('/')">÷</button>
+
+        <!-- ردیف سوم -->
 
         <button onclick="appendNumber('7')">7</button>
 
@@ -53,7 +87,10 @@
 
         <button onclick="appendNumber('9')">9</button>
 
-        <button class="operator" onclick="appendOperator('*')">×</button>
+        <button class="operator"
+                onclick="appendOperator('*')">×</button>
+
+        <!-- ردیف چهارم -->
 
         <button onclick="appendNumber('4')">4</button>
 
@@ -61,7 +98,10 @@
 
         <button onclick="appendNumber('6')">6</button>
 
-        <button class="operator" onclick="appendOperator('-')">−</button>
+        <button class="operator"
+                onclick="appendOperator('-')">−</button>
+
+        <!-- ردیف پنجم -->
 
         <button onclick="appendNumber('1')">1</button>
 
@@ -69,13 +109,18 @@
 
         <button onclick="appendNumber('3')">3</button>
 
-        <button class="operator" onclick="appendOperator('+')">+</button>
+        <button class="operator"
+                onclick="appendOperator('+')">+</button>
 
-        <button class="zero" onclick="appendNumber('0')">0</button>
+        <!-- ردیف آخر -->
+
+        <button class="zero"
+                onclick="appendNumber('0')">0</button>
 
         <button onclick="appendDot()">.</button>
 
-        <button class="equal" onclick="calculate()">=</button>
+        <button class="equal"
+                onclick="calculate()">=</button>
 
     </div>
 
@@ -83,7 +128,7 @@
 
     <div class="history">
 
-        <h2>📜 تاریخچه محاسبات</h2>
+        <h2>📜 تاریخچه</h2>
 
         <ul id="historyList"></ul>
 
